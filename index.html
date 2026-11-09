@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>这是个网站</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <!-- 泪池 -->
+    <img class="icon icon-1" src="assets2/1.png" alt="" onclick="handleIconClick1()">
+    <!-- 抽象视频 -->
+    <img class="icon icon-2" src="assets2/2.png" alt="" onclick="handleIconClick2()">
+    <!-- 语音留言 -->
+    <img class="icon icon-3" src="assets2/3.png" alt="" onclick="handleIconClick3()">
+    <!-- 梦核回忆 -->
+    <img class="icon icon-4" src="assets2/4.png" alt="" onclick="handleIconClick4()">
+    <!-- 木鱼 -->
+    <img class="icon icon-5" src="assets2/5.png" alt="" onclick="handleIconClick5()">
+    <!-- 游戏 -->
+    <img class="icon icon-6" src="assets2/6.png" alt="" onclick="handleIconClick6()">
+    <!-- 下雨 -->
+    <img class="icon icon-7" src="assets2/7.png" alt="" onclick="handleIconClick7()">
+
+
+    <!-- 泪池视频 -->
+    <div class="mask leichi-alert" onclick="handleLeichiAlertClick()">
+      <img src="assets2/leichi-alert.png" alt="">
+      <video src="assets2/leichi-video.mp4" loop></video>
+    </div>
+
+    <!-- 抽象视频 -->
+    <div class="mask chouxiang-alert" onclick="handleChouxiangAlertClick()">
+      <img src="assets2/chouxiang-alert.png" alt="">
+      <video src="assets2/chouxiang-video.mp4" loop></video>
+    </div>
+
+    <!-- 语音留言 -->
+    <audio class="yuyinliuyan" src="assets2/yuyinliuyan.mp3" controls></audio>
+    <div class="mask yuyinliuyan-alert" onclick="handleYuyinliuyanAlertClick()">
+      <img src="assets2/laba.png" alt="">
+    </div>
+
+    <!-- 梦核回忆 -->
+    <div class="mask menghe-alert" onclick="handleMengheAlertClick()">
+      <div class="menghe-content">
+        <video src="assets2/menghe-video.mp4" loop></video>
+        <img src="assets2/menghe-alert.png" alt="">
+      </div>
+    </div>
+
+    <!-- 木鱼 -->
+    <audio class="muyu" src="assets2/muyu.mp3" controls></audio>
+    <div class="mask muyu-alert" onclick="handleMuteMuyuClick()">
+      <img src="assets2/muyu.png" alt="">
+    </div>
+
+    <!-- 游戏 -->
+    <div class="mask game-alert" onclick="handleGameAlertClick()">
+      <img src="assets2/game-alert.png" alt="">
+      <iframe src="./arkanoid/index.html" frameborder="0"></iframe>
+    </div>
+
+    <!-- 警告alert -->
+    <div class="mask warn-alert" onclick="handleWarnAlertClick()">
+      <img src="assets2/warn-alert.png" alt="">
+    </div>
+
+    <img class="footer" src="assets2/footer.jpg" alt="">
+  </main>
+
+  <script>
+    let iconClick = [false, false, false, false, false, false, false]
+
+    // ----- 泪池 -----
+    function handleIconClick1() {
+      console.log('点击了泪池图标');
+      iconClick[0] = true
+      document.querySelector('.leichi-alert').classList.add('active')
+      document.querySelector('.leichi-alert video').play()
+    }
+    function handleLeichiAlertClick() {
+      document.querySelector('.leichi-alert').classList.remove('active')
+      document.querySelector('.leichi-alert video').pause()
+    }
+
+    // ----- 抽象视频 -----
+    function handleIconClick2() {
+      console.log('点击了抽象视频图标');
+      iconClick[1] = true
+      document.querySelector('.chouxiang-alert').classList.add('active')
+      document.querySelector('.chouxiang-alert video').play()
+    }
+    function handleChouxiangAlertClick() {
+      document.querySelector('.chouxiang-alert').classList.remove('active')
+      document.querySelector('.chouxiang-alert video').pause()
+    }
+
+    // ----- 语音留言 -----
+    function handleIconClick3() {
+      console.log('点击了语音留言图标');
+      iconClick[2] = true
+      document.querySelector('.yuyinliuyan').play()
+      document.querySelector('.yuyinliuyan-alert').classList.add('active')
+    }
+    function handleYuyinliuyanAlertClick() {
+      document.querySelector('.yuyinliuyan-alert').classList.remove('active')
+      document.querySelector('.yuyinliuyan').pause()
+    }
+
+    // ----- 梦核回忆 -----
+    function handleIconClick4() {
+      console.log('点击了梦核回忆图标');
+      iconClick[3] = true
+      document.querySelector('.menghe-alert').classList.add('active')
+      document.querySelector('.menghe-alert video').play()
+    }
+    function handleMengheAlertClick() {
+      document.querySelector('.menghe-alert').classList.remove('active')
+      document.querySelector('.menghe-alert video').pause()
+    }
+
+    // ----- 木鱼 -----
+    function handleIconClick5() {
+      console.log('点击了木鱼图标');
+      iconClick[4] = true
+
+      document.querySelector('.muyu').play()
+      document.querySelector('.muyu-alert').classList.add('active');
+    }
+    function handleMuteMuyuClick() {
+      document.querySelector('.muyu').pause();
+      document.querySelector('.muyu-alert').classList.remove('active');
+    }
+
+    // ----- 游戏 -----
+    function handleIconClick6() {
+      console.log('点击了游戏图标');
+      iconClick[5] = true
+      document.querySelector('.game-alert').classList.add('active');
+    }
+    function handleGameAlertClick() {
+      document.querySelector('.game-alert').classList.remove('active');
+    }
+
+    // ----- 下雨 -----
+    function handleIconClick7() {
+      iconClick[6] = true
+      if (iconClick.every(item => item)) {
+        console.log('所有图标都被点击了');
+        console.log('点击了下雨图标');
+        window.location.href = './codeRainP5js/index.html'
+      } else {
+        console.log('还没有点击所有图标');
+        document.querySelector('.warn-alert').classList.add('active')
+      }
+    }
+    function handleWarnAlertClick() {
+      document.querySelector('.warn-alert').classList.remove('active')
+    }
+
+    let main = document.querySelector('main');
+    function scaleMain() {
+      if (main) {
+        const scaleRatioH = window.innerHeight / main.offsetHeight;
+        const scaleRatioW = window.innerWidth / main.offsetWidth;
+        // main.style.transform = `scale(${Math.max(0.8, scaleRatioW)}, ${Math.max(0.8, scaleRatioH)})`;
+        main.style.transform = `scale(${scaleRatioW}, ${scaleRatioH})`;
+      }
+    }
+
+    window.addEventListener('resize', scaleMain);
+    scaleMain();
+  </script>
+</body>
+
+</html>
